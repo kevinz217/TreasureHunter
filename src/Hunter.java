@@ -1,5 +1,7 @@
 import java.awt.*;
 
+import static java.lang.System.exit;
+
 /**
  * Hunter Class<br /><br />
  * This class represents the treasure hunter character (the player) in the Treasure Hunt game.
@@ -37,8 +39,16 @@ public class Hunter {
     public void changeGold(int modifier) {
         gold += modifier;
         if (gold < 0) {
-            gold = 0;
+            gameOver();
         }
+    }
+
+    public void gameOver() {
+        System.out.println("Sorry, traveler, your gold has run out!");
+        System.out.println("--------------------");
+        System.out.println("|  ! GAME OVER !   |");
+        System.out.println("--------------------");
+        System.exit(0);
     }
 
     /**
