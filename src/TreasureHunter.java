@@ -16,7 +16,6 @@ public class TreasureHunter {
     private Town currentTown;
     private Hunter hunter;
     private boolean hardMode;
-    private boolean testMode;
 
     /**
      * Constructs the Treasure Hunter game.
@@ -54,13 +53,12 @@ public class TreasureHunter {
         if (hard.equals("y")) {
             hardMode = true;
         } else if (hard.equals("test")) {
-            testMode = true;
             hunter.changeGold(90);
             hunter.addItem("water");
             hunter.addItem("rope");
             hunter.addItem("machete");
             hunter.addItem("horse");
-           // hunter.addItem("boots");
+           hunter.addItem("boots");
             hunter.addItem("boat");
         }
     }
@@ -114,6 +112,7 @@ public class TreasureHunter {
             System.out.println("(S)ell something at the shop.");
             System.out.println("(M)ove on to a different town.");
             System.out.println("(L)ook for trouble!");
+            System.out.println("(H)unt for treasure!");
             System.out.println("Give up the hunt and e(X)it.");
             System.out.println();
             System.out.print("What's your next move? ");
@@ -139,6 +138,8 @@ public class TreasureHunter {
             currentTown.lookForTrouble();
         } else if (choice.equals("x")) {
             System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
+        } else if (choice.equals("h")) {
+            // replace this code with the hunt treasure method from the town class
         } else {
             System.out.println("Yikes! That's an invalid option! Try again.");
         }

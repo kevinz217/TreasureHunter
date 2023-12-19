@@ -12,6 +12,8 @@ public class Town {
     private String printMessage;
     private boolean toughTown;
 
+    private static final String[] townTreasure = {"Crown of Kings", "Lustrous Trophy", "Illusionary Gem", "dust"};
+
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
      *
@@ -27,6 +29,7 @@ public class Town {
         hunter = null;
 
         printMessage = "";
+
 
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
