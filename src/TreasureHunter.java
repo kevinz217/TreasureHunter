@@ -16,6 +16,7 @@ public class TreasureHunter {
     private Town currentTown;
     private Hunter hunter;
     private boolean hardMode;
+    private boolean testMode;
 
     /**
      * Constructs the Treasure Hunter game.
@@ -53,8 +54,13 @@ public class TreasureHunter {
         if (hard.equals("y")) {
             hardMode = true;
         } else if (hard.equals("test")) {
-            hunter.changeGold(100);
-            // try to add a test mode and see if that works
+            testMode = true;
+            hunter.changeGold(90);
+            hunter.addItem("water");
+            hunter.addItem("rope");
+            hunter.addItem("machete");
+            hunter.addItem("horse");
+            hunter.addItem("boat");
         }
     }
 
