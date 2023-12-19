@@ -99,10 +99,10 @@ public class Town {
         if (Math.random() > noTroubleChance) {
             printMessage = "You couldn't find any trouble";
         } else {
-            printMessage = "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";
+            printMessage = Colors.RED + "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n" + Colors.RESET;
             int goldDiff = (int) (Math.random() * 10) + 1;
             if (Math.random() > noTroubleChance) {
-                printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold.";
+                printMessage += Colors.RED + "Okay, stranger! You proved yer mettle. Here, take my gold." + Colors.RESET;
                 printMessage += "\nYou won the brawl and receive "+ Colors.YELLOW + goldDiff + Colors.RESET + " gold.";
                 hunter.changeGold(goldDiff);
             } else {
@@ -114,7 +114,7 @@ public class Town {
     }
 
     public String toString() {
-        return "This nice little town is surrounded by " + terrain.getTerrainName() + ".";
+        return "This nice little town is surrounded by " + Colors.CYAN + terrain.getTerrainName() + Colors.RESET + ".";
     }
 
     /**
