@@ -16,6 +16,7 @@ public class TreasureHunter {
     private Town currentTown;
     private Hunter hunter;
     private boolean hardMode;
+    private boolean easyMode;
 
     private static final String[] townTreasures = {"Crown of Kings", "Lustrous Trophy", "Illusionary Gem", "dust"};
 
@@ -28,6 +29,7 @@ public class TreasureHunter {
         currentTown = null;
         hunter = null;
         hardMode = false;
+        easyMode = false;
     }
 
     /**
@@ -51,11 +53,15 @@ public class TreasureHunter {
         // set hunter instance variable
         hunter = new Hunter(name, 10);
 
-        System.out.print("Hard mode? (y/n): ");
-        String hard = SCANNER.nextLine().toLowerCase();
-        if (hard.equals("y")) {
+        System.out.print("Choose your mode {(e)asy, (n)ormal, (h)ard}: ");
+        String mode = SCANNER.nextLine().toLowerCase();
+        if (mode.equals("h")) {
             hardMode = true;
-        } else if (hard.equals("test")) {
+        } else if (mode.equals("e")) {
+            easyMode = true;
+        } else if (mode.equals("s")) {
+            hunter.changeGold(20);
+        } else if (mode.equals("test")) {
             hunter.changeGold(90);
             hunter.addItem("water");
             hunter.addItem("rope");
@@ -73,11 +79,19 @@ public class TreasureHunter {
         double markdown = 0.5;
         double toughness = 0.4;
         if (hardMode) {
-            // in hard mode, you get less money back when you sell items
+            //            // in hard mode, you get less money back when you sell items
             markdown = 0.25;
 
             // and the town is "tougher"
             toughness = 0.75;
+        }
+
+        if (easyMode) {
+            //            // in easy mode, you get all your money back when you sell items
+            markdown = 1;
+
+            // and the town is less "tough"
+            toughness = 0.25;
         }
 
         // note that we don't need to access the Shop object
