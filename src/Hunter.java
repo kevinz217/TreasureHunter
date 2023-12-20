@@ -24,7 +24,7 @@ public class Hunter {
     public Hunter(String hunterName, int startingGold) {
         this.hunterName = hunterName;
         kit = new String[6]; // only 6 possible items can be stored in kit
-        treasureList = new String[3];
+        treasureList = new String[3]; // only 3 treasures
         gold = startingGold;
     }
 
@@ -32,6 +32,8 @@ public class Hunter {
     public String getHunterName() {
         return hunterName;
     }
+
+    public String[] getTreasureList() { return treasureList;}
 
     /**
      * Updates the amount of gold the hunter has.
@@ -149,6 +151,14 @@ public class Hunter {
         for (String item : kit) {
             if (item != null) {
                 printableKit += Colors.PURPLE + item + Colors.RESET + space;
+            }
+        }
+
+        printableKit += "\n";
+
+        for (String treasure : treasureList) {
+            if (treasure != null) {
+                printableKit += Colors.GREEN + treasure + Colors.RESET + space;
             }
         }
 

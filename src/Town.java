@@ -1,3 +1,5 @@
+import java.sql.SQLOutput;
+
 /**
  * The Town Class is where it all happens.
  * The Town is designed to manage all the things a Hunter can do in town.
@@ -11,8 +13,9 @@ public class Town {
     private Terrain terrain;
     private String printMessage;
     private boolean toughTown;
+    private boolean searched;
 
-    private static final String[] townTreasure = {"Crown of Kings", "Lustrous Trophy", "Illusionary Gem", "dust"};
+    private String townTreasure;
 
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
@@ -20,7 +23,7 @@ public class Town {
      * @param shop The town's shoppe.
      * @param toughness The surrounding terrain.
      */
-    public Town(Shop shop, double toughness) {
+    public Town(Shop shop, double toughness, String treasure) {
         this.shop = shop;
         this.terrain = getNewTerrain();
 
@@ -33,6 +36,8 @@ public class Town {
 
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
+        townTreasure = treasure;
+        searched = false;
     }
 
     public String getLatestNews() {
@@ -113,6 +118,34 @@ public class Town {
                 printMessage += "\nYou lost the brawl and pay " + goldDiff + " gold.";
                 hunter.changeGold(-goldDiff);
             }
+        }
+    }
+
+    public void huntForTreasure() {
+        String[] treasureList = hunter.getTreasureList();
+        if (!searched) {
+            // checks if the hunter already has the treasure
+            for (String treasure : treasureList) {
+                if (treasure.equals(townTreasure)) {
+                    System.out.println("You have already collected " + Colors.GREEN + townTreasure + Colors.RESET);
+                }
+                return;
+            }
+
+            for (int i = 0; i < treasureList.length; i++) {
+                if (treasureList[i] == null) {
+                    if (townTreasure.equals("dust")) {
+                        System.out.println("You found dust! (nothing has been added to your inventory)");
+                        return;
+                    } else {
+                        treasureList[i] = townTreasure;
+                        System.out.println("You found " + Colors.GREEN + townTreasure + Colors.RESET + "!");
+                        return;
+                    }
+                }
+            }
+        } else {
+            System.out.println("You have already searched this town!");
         }
     }
 

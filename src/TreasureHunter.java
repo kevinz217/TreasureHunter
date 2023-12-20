@@ -17,6 +17,9 @@ public class TreasureHunter {
     private Hunter hunter;
     private boolean hardMode;
 
+    private static final String[] townTreasures = {"Crown of Kings", "Lustrous Trophy", "Illusionary Gem", "dust"};
+
+
     /**
      * Constructs the Treasure Hunter game.
      */
@@ -58,7 +61,7 @@ public class TreasureHunter {
             hunter.addItem("rope");
             hunter.addItem("machete");
             hunter.addItem("horse");
-           hunter.addItem("boots");
+            hunter.addItem("boots");
             hunter.addItem("boat");
         }
     }
@@ -85,7 +88,9 @@ public class TreasureHunter {
         // creating the new Town -- which we need to store as an instance
         // variable in this class, since we need to access the Town
         // object in other methods of this class
-        currentTown = new Town(shop, toughness);
+        // this assigns a random treasure to the town too
+        String townTreasure = townTreasures[(int) (Math.random() * 4)];
+        currentTown = new Town(shop, toughness, townTreasure);
 
         // calling the hunterArrives method, which takes the Hunter
         // as a parameter; note this also could have been done in the
@@ -139,7 +144,7 @@ public class TreasureHunter {
         } else if (choice.equals("x")) {
             System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
         } else if (choice.equals("h")) {
-            // replace this code with the hunt treasure method from the town class
+            currentTown.huntForTreasure();
         } else {
             System.out.println("Yikes! That's an invalid option! Try again.");
         }
