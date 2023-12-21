@@ -121,25 +121,35 @@ public class Town {
         }
     }
 
+    /**
+     * Gives the hunter a chance to search for treasure.<p>
+     * One treasure is assigned to each town.<p>
+     * Dust can be found but not added, and only one of each treasure can be obtained
+     */
     public void huntForTreasure() {
         String[] treasureList = hunter.getTreasureList();
         if (!searched) {
             // checks if the hunter already has the treasure
             for (String treasure : treasureList) {
-                if (treasure.equals(townTreasure)) {
-                    System.out.println("You have already collected " + Colors.GREEN + townTreasure + Colors.RESET);
+                if (treasure != null) {
+                    if (treasure.equals(townTreasure)) {
+                        System.out.println("You have already collected " + Colors.GREEN + townTreasure + Colors.RESET);
+                        searched = true;
+                        return;
+                    }
                 }
-                return;
             }
 
             for (int i = 0; i < treasureList.length; i++) {
                 if (treasureList[i] == null) {
                     if (townTreasure.equals("dust")) {
                         System.out.println("You found dust! (nothing has been added to your inventory)");
+                        searched = true;
                         return;
                     } else {
                         treasureList[i] = townTreasure;
                         System.out.println("You found " + Colors.GREEN + townTreasure + Colors.RESET + "!");
+                        searched = true;
                         return;
                     }
                 }

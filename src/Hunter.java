@@ -154,7 +154,7 @@ public class Hunter {
             }
         }
 
-        printableKit += "\n";
+        printableKit += "\nTreasures found: ";
 
         for (String treasure : treasureList) {
             if (treasure != null) {
