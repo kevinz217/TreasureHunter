@@ -147,19 +147,46 @@ public class Hunter {
     public String getInventory() {
         String printableKit = "";
         String space = " ";
+        int count = 0;
 
-        for (String item : kit) {
-            if (item != null) {
-                printableKit += Colors.PURPLE + item + Colors.RESET + space;
+        // adds all items except the last item
+        for (int i = 0; i < kit.length - 1; i++) {
+            if (kit[i] != null) {
+                printableKit += Colors.PURPLE + kit[i] + Colors.RESET + "," + space;
             }
         }
 
+        // adds the last item of a full inventory without the comma
+        if (kit[kit.length - 1] != null) {
+            printableKit += Colors.PURPLE + kit[kit.length - 1] + Colors.RESET + space;
+        }
+
+        // starts a new line to print the treasure inventory
         printableKit += "\nTreasures found: ";
 
-        for (String treasure : treasureList) {
-            if (treasure != null) {
-                printableKit += Colors.GREEN + treasure + Colors.RESET + space;
+        // same as the iteminv as it also adds everything except the last item
+        for (int i = 0; i < treasureList.length - 1; i++) {
+            if (treasureList[i] != null) {
+                if (treasureList[i + 1] !=null) {
+                    printableKit += Colors.GREEN + treasureList[i] + Colors.RESET + "," + space;
+                } else {
+                    printableKit += Colors.GREEN + treasureList[i] + Colors.RESET  + space;
+                }
+            } else {
+                count++;
             }
+        }
+
+        if (treasureList[treasureList.length - 1] != null) {
+            printableKit += Colors.GREEN + treasureList[treasureList.length - 1] + Colors.RESET + space;
+        } else {
+            count++;
+        }
+
+        // accounts for the scenario where hunter has zero treasures
+        // count only goes up if the element is equal to null
+        if (count == 3) {
+            printableKit += "none";
         }
 
         return printableKit;

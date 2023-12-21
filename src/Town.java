@@ -154,6 +154,8 @@ public class Town {
                     }
                 }
             }
+            System.out.println("You have already searched this town!");
+            searched = true;
         } else {
             System.out.println("You have already searched this town!");
         }
