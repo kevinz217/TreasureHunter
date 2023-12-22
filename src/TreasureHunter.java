@@ -159,6 +159,13 @@ public class TreasureHunter {
             System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
         } else if (choice.equals("h")) {
             currentTown.huntForTreasure();
+            if (currentTown.checkTreasures()) {
+                System.out.println("\nYou win! You have collected all three treasures!");
+                System.out.println("-----------------------------------------------------------");
+                System.out.println("|Congratulations! You have collected all three treasures!|");
+                System.out.println("-----------------------------------------------------------");
+                System.exit(0);
+            }
         } else {
             System.out.println("Yikes! That's an invalid option! Try again.");
         }

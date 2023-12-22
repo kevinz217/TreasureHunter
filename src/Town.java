@@ -16,6 +16,7 @@ public class Town {
     private boolean searched;
 
     private String townTreasure;
+    private static int treasureCount = 0;
 
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
@@ -150,6 +151,7 @@ public class Town {
                         treasureList[i] = townTreasure;
                         System.out.println("You found " + Colors.GREEN + townTreasure + Colors.RESET + "!");
                         searched = true;
+                        treasureCount++;
                         return;
                     }
                 }
@@ -195,5 +197,12 @@ public class Town {
     private boolean checkItemBreak() {
         double rand = Math.random();
         return (rand < 0.5);
+    }
+
+    public boolean checkTreasures() {
+        if (treasureCount == 3) {
+            return true;
+        }
+        return false;
     }
 }
