@@ -1,5 +1,3 @@
-import java.sql.SQLOutput;
-
 /**
  * The Town Class is where it all happens.
  * The Town is designed to manage all the things a Hunter can do in town.
