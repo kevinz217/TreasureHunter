@@ -74,7 +74,7 @@ public class Town {
             if (!(TreasureHunter.getEasyMode())) {
                 if (checkItemBreak()) {
                 hunter.removeItemFromKit(item);
-                printMessage += "\nUnfortunately, your " + item + " broke.";
+                printMessage += "\nUnfortunately, you lost your  " + item;
                 }
             }
 
@@ -92,6 +92,7 @@ public class Town {
      */
     public void enterShop(String choice) {
         shop.enter(hunter, choice);
+        printMessage = "You left the shop";
     }
 
     /**
