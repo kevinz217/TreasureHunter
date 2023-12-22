@@ -11,7 +11,7 @@ import static java.lang.System.exit;
 public class Hunter {
     //instance variables
     private String hunterName;
-    private String[] kit;
+    private static String[] kit;
     private String[] treasureList;
     private int gold;
 
@@ -23,7 +23,11 @@ public class Hunter {
      */
     public Hunter(String hunterName, int startingGold) {
         this.hunterName = hunterName;
-        kit = new String[7]; // only 7 possible items can be stored in kit
+        if (TreasureHunter.getSamuraiMode()) {
+            kit = new String[8];
+        } else {
+            kit = new String[7]; // only 7 possible items can be stored in kit
+        }
         treasureList = new String[3]; // only 3 treasures
         gold = startingGold;
     }
@@ -127,7 +131,7 @@ public class Hunter {
      * @param item The search item
      * @return true if the item is found.
      */
-    public boolean hasItemInKit(String item) {
+    public static boolean hasItemInKit(String item) {
         for (String tmpItem : kit) {
             if (item.equals(tmpItem)) {
                 // early return
