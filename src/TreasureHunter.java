@@ -16,7 +16,7 @@ public class TreasureHunter {
     private Town currentTown;
     private Hunter hunter;
     private boolean hardMode;
-    private boolean easyMode;
+    private static boolean easyMode;
 
     private static final String[] townTreasures = {"Crown of Kings", "Lustrous Trophy", "Illusionary Gem", "dust"};
 
@@ -31,6 +31,7 @@ public class TreasureHunter {
         hardMode = false;
         easyMode = false;
     }
+
 
     /**
      * Starts the game; this is the only public method
@@ -59,6 +60,7 @@ public class TreasureHunter {
             hardMode = true;
         } else if (mode.equals("e")) {
             easyMode = true;
+            hunter.changeGold(20);
         } else if (mode.equals("s")) {
             hunter.changeGold(20);
         } else if (mode.equals("test")) {
@@ -69,6 +71,14 @@ public class TreasureHunter {
             hunter.addItem("horse");
             hunter.addItem("boots");
             hunter.addItem("boat");
+        }
+    }
+
+    public static boolean getEasyMode() {
+        if (easyMode) {
+            return true;
+        } else {
+            return false;
         }
     }
 
